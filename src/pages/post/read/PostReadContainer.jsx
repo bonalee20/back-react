@@ -1,0 +1,40 @@
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+
+const PostReadContainer = () => {
+  const {id} = useParams()
+
+  const [post, setPost] = useState({})
+
+
+  useEffect(() => {
+    
+    const getPosts = async () => {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      const post = await response.json()
+      return post
+    }
+
+    getPosts()
+      .then(setPost)
+      .catch(console.error)
+
+  }, [])
+
+  console.log(post)
+
+
+
+
+  return (
+    <div>
+      <p> 아이디 : {post.id} </p>
+      <p> 제목 : {post.title} </p>
+      <p> 내용 : {post.body} </p>
+    </div>
+  );
+};
+
+export default PostReadContainer;

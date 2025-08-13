@@ -1,8 +1,18 @@
+import { ThemeProvider } from 'styled-components';
 import './App.css';
+import GlobalStyle from './styles/global';
+import theme from './styles/theme';
+import {Route, RouterProvider, Routes} from 'react-router-dom'
+import router from './routes/router';
 
 function App() {
   return (
-    <>88</>
+    <>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </>
   );
 }
 
